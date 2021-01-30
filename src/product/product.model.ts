@@ -31,6 +31,14 @@ export class Product {
     @ApiProperty()
     @prop()
     public material: string;
+
+    @ApiProperty()
+    @prop()
+    public color: string;
+
+    @ApiProperty()
+    @prop()
+    public quantity: number;
     
     @ApiProperty()
     @prop()
