@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { getModelForClass } from '@typegoose/typegoose';
-import { Product } from './product.model';
-import { ProductType } from './ProductTypes/productType.model';
+import { Product } from './models/product.model';
+import { ProductType } from './models/productType.model';
 
 @Injectable()
 export class ProductService {
