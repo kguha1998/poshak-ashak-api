@@ -3,16 +3,11 @@ import { prop, getModelForClass } from '@typegoose/typegoose';
 import * as mongoose from 'mongoose';
 
 @Injectable()
-export class DbService implements OnModuleInit  {
-    onModuleInit() {
-        const result = this.initConnection();
-        result.then(result => {
-            console.log(result);
-        });
-    }
+export class DbService {
 
-    public async initConnection() {
-        return await mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "poshak-ashak" });
+    public async initConnection(connectionString: string) {
+        console.info("Connecting To ",connectionString);
+        return await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "poshak-ashak" });
     }
 
 }

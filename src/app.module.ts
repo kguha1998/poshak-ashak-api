@@ -1,14 +1,19 @@
 import { DbService } from './helpers/db.service';
 import { ProductModule } from './product/product.module';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-
+import { ConfigModule } from '@nestjs/config';
+const ENV = process.env.NODE_ENV;
 @Module({
   imports: [
-    ProductModule,],
-  controllers: [AppController],
+    ProductModule,
+    ConfigModule.forRoot({
+      envFilePath: !ENV ? '.env' : `.env.${ENV}`,
+      isGlobal: true
+    })
+  ],
+  controllers: [],
   providers: [
-    DbService, AppService],
+    DbService
+  ]
 })
 export class AppModule { }
