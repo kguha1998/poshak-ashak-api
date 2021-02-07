@@ -49,13 +49,12 @@ export class Product {
 
     @ApiProperty()
     @prop({ref: ProductColor})
-    public colorIds: Ref<ProductColor>[];
+    public colors: Ref<ProductColor>[];
 
     @ApiProperty()
     @prop()
     public quantity: number;
     
-    @ApiProperty()
     @prop({ unique: true, index: true })
     public product_code: string;
   
