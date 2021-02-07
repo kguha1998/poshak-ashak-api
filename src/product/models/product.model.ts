@@ -1,6 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { prop, ReturnModelType, DocumentType, modelOptions, Severity } from "@typegoose/typegoose";
-import { ProductColor } from "./productColor.model";
+import { prop, ReturnModelType, DocumentType, modelOptions, Severity, Ref } from "@typegoose/typegoose";
+import { ProductColor } from "src/app-config/models/productColor.model";
+import { ProductSubType, ProductType } from "src/app-config/models/productType.model";
+
 class Price {
     @ApiProperty()
     @prop()
@@ -18,7 +20,7 @@ class Size{
 
     @ApiProperty()
     @prop()
-    bredth: number;
+    size: number;
 }
 export class Product {
     @ApiProperty()
@@ -29,17 +31,25 @@ export class Product {
     @prop()
     public price: Price;
 
-    @ApiProperty({type: Size})
+    @ApiProperty({type: [Size]})
     @prop()
-    public size: Size;
+    public size: Size[];
+
+    @ApiProperty()
+    @prop({ref: ProductType})
+    public type: Ref<ProductType>;
+
+    @ApiProperty()
+    @prop({ref: ProductSubType})
+    public subTypeCode: Ref<ProductSubType>;
 
     @ApiProperty()
     @prop()
     public material: string;
 
-    @ApiProperty({type:ProductColor})
-    @prop()
-    public colors: ProductColor[];
+    @ApiProperty()
+    @prop({ref: ProductColor})
+    public colorIds: Ref<ProductColor>[];
 
     @ApiProperty()
     @prop()
