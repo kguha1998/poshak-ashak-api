@@ -41,7 +41,7 @@ export class Product {
 
     @ApiProperty()
     @prop({ref: ProductSubType})
-    public subTypeCode: Ref<ProductSubType>;
+    public subTypeCode: Ref<ProductSubType>[];
 
     @ApiProperty()
     @prop()
